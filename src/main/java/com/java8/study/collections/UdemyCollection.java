@@ -1,6 +1,6 @@
 package com.java8.study.collections;
 
-import com.java8.study.collection.Theatre.Seat;
+import com.java8.study.collections.Theatre.Seat;
 
 import java.util.ArrayList;
 import java.util.Collections;
