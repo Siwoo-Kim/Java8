@@ -23,6 +23,7 @@ public class Location {
         this.locationID = locationID;
         this.description = description;
         this.exits = new HashMap<>();
+        addExit(LocationDemo.QUIT, 0);
     }
 
     public void addExit(String direction, int location) {
