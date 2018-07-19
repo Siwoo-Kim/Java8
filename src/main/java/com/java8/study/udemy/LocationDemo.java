@@ -1,5 +1,7 @@
 package com.java8.study.udemy;
 
+import com.java8.study.udemy.domain.Location;
+
 import java.util.*;
 
 /**
@@ -22,32 +24,39 @@ public class LocationDemo {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        locations.put(0, new Location(0, "You are sitting in front of a computer learning Java"));
-        locations.put(1, new Location(1, "You are standing at the end of a road before a small brick building"));
-        locations.put(2, new Location(2, "You are at the top of a hill"));
-        locations.put(3, new Location(3, "You are inside a building, a well house for a small spring"));
-        locations.put(4, new Location(4, "You are in a valley beside a stream"));
-        locations.put(5, new Location(5, "You are in the forest"));
 
-        locations.get(1).addExit(WEST, 2);
-        locations.get(1).addExit(EAST, 3);
-        locations.get(1).addExit(SOUTH, 4);
-        locations.get(1).addExit(NORTH, 5);
-        //locations.get(1).addExit(QUIT, 0); //Adding Quit is duplicated
+        Map<String, Integer> tempExits = new HashMap<>();
+        locations.put(0, new Location(0, "You are sitting in front of a computer learning Java", tempExits));
 
-        locations.get(2).addExit(NORTH, 5);
-        //locations.get(2).addExit(QUIT, 0);
+        tempExits = new HashMap<>();
+        tempExits.put(WEST, 2);
+        tempExits.put(EAST, 3);
+        tempExits.put(SOUTH, 4);
+        tempExits.put(NORTH, 5);
+        //tempExits.put(QUIT, 0); //Adding Quit is duplicated
+        locations.put(1, new Location(1, "You are standing at the end of a road before a small brick building", tempExits));
 
-        locations.get(3).addExit(WEST, 1);
-        //locations.get(3).addExit(QUIT, 0);
+        tempExits = new HashMap<>();
+        tempExits.put(NORTH, 5);
+        //tempExits.put(QUIT, 0);
+        locations.put(2, new Location(2, "You are at the top of a hill", tempExits));
 
-        locations.get(4).addExit(NORTH, 1);
-        locations.get(4).addExit(WEST, 2);
-        //locations.get(4).addExit(QUIT, 0);
+        tempExits = new HashMap<>();
+        tempExits.put(WEST, 1);
+        //tempExits.put(QUIT, 0);
+        locations.put(3, new Location(3, "You are inside a building, a well house for a small spring", tempExits));
 
-        locations.get(5).addExit(SOUTH, 1);
-        locations.get(5).addExit(WEST, 2);
-        //locations.get(5).addExit(QUIT, 0);
+        tempExits = new HashMap<>();
+        tempExits.put(NORTH, 1);
+        tempExits.put(WEST, 2);
+        //tempExits.put(QUIT, 0);
+        locations.put(4, new Location(4, "You are in a valley beside a stream", tempExits));
+
+        tempExits = new HashMap<>();
+        tempExits.put(SOUTH, 1);
+        tempExits.put(WEST, 2);
+        //tempExits.put(QUIT, 0);
+        locations.put(5, new Location(5, "You are in the forest", tempExits));
 
         Map<String, String> vocabulary = new HashMap<>();
         vocabulary.put("QUIT", QUIT);
@@ -59,6 +68,8 @@ public class LocationDemo {
         int loc = 1;
         while (true) {
             System.out.println(locations.get(loc).getDescription());
+            tempExits.remove("S");
+
             if(loc == 0) {
                 //Game Quit
                 break;
